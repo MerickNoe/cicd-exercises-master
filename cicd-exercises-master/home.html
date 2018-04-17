@@ -1,42 +1,122 @@
-﻿<!DOCTYPE html>
+﻿Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Explore
+ @MerickNoe
+Sign out
+1
+0 0 squarebraket/deleteme2
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
+deleteme2/home.html
+5b878bc  18 hours ago
+@squarebraket squarebraket Addding unit-tests
+
+106 lines (87 sloc)  2.09 KB
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
     $(document).ready(function () {
       console.log('document loaded');
     });
-
     $(window).on("load", function () {
       console.log('window loaded');
     });
-  </script>
-  <meta charset="UTF-8">
-  <title>Sample Library, running on Heroku</title>
+    </script>
+    <meta charset="UTF-8">
+    <title>Deleme2 Project, running on Heroku</title>
 </head>
 <body>
-<h1>Github-Coban</h1>
-<div id="library">
-  <h3>Users</h3>
-  <div id="users">
-    <ul>
-      <li>user 1</li>
-      <li>user 2</li>
-    </ul>
-  </div>
-  <div>
-    <h4>User Books</h4>
-    <div id="mybooks">
-      <ul>
-        <li>Book 1</li>
-        <li>Book 2</li>
-        <li>Book 3</li>
-      </ul>
+    <h1>Deleme2 Project</h1>
+    <span id="greeting"></span>
+    <div id="library">
+        <h3>Users</h3>
+        <div id="users">
+            <ul>
+                <li>user 1</li>
+                <li>user 2</li>
+            </ul>
+        </div>
+        <div>
+            <h4>User Books</h4>
+            <div id="mybooks">
+                <ul>
+                    <li>Book 1</li>
+                    <li>Book 2</li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<div id="search">
-  <h3>Search</h3>
-</div>
+    <div id="search">
+        <h3>Search</h3>
+    </div>
+
+    <div>
+        <h4 style="color: red;">-------- Test Results --------</h4>
+        <ul id="results"></ul>
+    </div>
+
+    <!-- ========================= BUSINESS LOGIC =====================-->
+    <script>
+  function changeNameToUppercase(name) {
+    return name.toUpperCase();
+  }
+  function greeting(name) {
+    var todaysDate = new Date();
+    var greetingString = changeNameToUppercase(name) +
+          ' ' +
+          todaysDate.getUTCMonth() +
+          '/' +
+          todaysDate.getUTCDay() +
+          '/' +
+          todaysDate.getFullYear();
+    return greetingString;
+  }
+  $('#greeting').text(greeting('Ronald'));
+    </script>
+
+    <!-- ======================== UNIT-TESTS LOGIC ==================== -->
+
+    <script>
+  results = document.getElementById('results');
+  function createOneResult(msg, r) {
+    var li = document.createElement('LI');
+    li.innerText = msg + ', ' + r ;
+    return li;
+  }
+  function testResults(msg, r) {
+    results.appendChild(createOneResult(msg, r ? 'Passed': 'Failure'))
+  }
+    </script>
+
+    <script>
+  function testTheTruth() {
+    testResults('1 is equal to 1', 1 === 1);
+    testResults('2 is not equal to 1', 2 !== 1);
+    testResults('Nombre mayusculas',changeNameToUppercase('pedro') === 'PEDRO');
+    testResults('el año es 2018', greeting('pedro').indexOf('2018') > -1)
+  }
+  (function() {
+    testTheTruth();
+  })()
+    </script>
+
 </body>
 </html>
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
+Press h to open a hovercard with more details.
